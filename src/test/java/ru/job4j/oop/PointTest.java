@@ -20,4 +20,20 @@ public class PointTest {
         double result = a.distance3d(b);
         assertEquals(result, 5.19, 0.01);
     }
+
+    @Test
+    public void distance() {
+        Point a = new Point(0,0);
+        Point b = new Point(0,2);
+        double result = a.distance(b);
+        assertEquals(result, 2.0,0.01);
+    }
+
+    @Test
+    public void distanceVersion2() {
+        Point a = new Point(1,3);
+        Point b = new Point(0,2);
+        double result = a.distance(b);
+        assertEquals(result, 1.41,0.01);
+    }
 }

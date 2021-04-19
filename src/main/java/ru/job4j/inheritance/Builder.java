@@ -4,8 +4,9 @@ public class Builder extends Engineer {
 
     private int countOfBuildings;
 
-    public Builder(int countOfBuilds) {
-        this.countOfBuildings = countOfBuilds;
+    public Builder(String name, String surname, String education, String birthday, String mathSkill, int countOfBuildings) {
+        super(name, surname, education, birthday, mathSkill);
+        this.countOfBuildings = countOfBuildings;
     }
 
     @Override

@@ -24,8 +24,8 @@ public class Triangle {
         double ab = first.distance(second);
         double ac = first.distance(third);
         double bc = second.distance(third);
-        double p = period(ab, bc, ac);
         if (this.exist(ab, ac, bc)) {
+            double p = period(ab, bc, ac);
             rsl = Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
         }
         return rsl;

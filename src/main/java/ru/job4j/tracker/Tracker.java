@@ -30,7 +30,7 @@ public class Tracker {
                 findByName[count++] = items[i];
             }
         }
-        return Arrays.copyOf(findByName, size);
+        return Arrays.copyOf(findByName, count);
     }
 
     public boolean replace(int id, Item item) {

@@ -1,5 +1,6 @@
 package ru.job4j.tracker;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -94,5 +95,65 @@ public class StartUITest {
         assertEquals(out.toString(),
                 "Menu:" + System.lineSeparator()
                         + "0. Exit Program" + System.lineSeparator());
+    }
+
+    @Test
+    public void whenFindAllAction() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[]{"0", "1"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {new ShowAllItemsAction(out), new ExitAction()};
+        new StartUI(out).init(in, tracker, actions);
+        assertEquals(out.toString(),
+                "Menu:" + System.lineSeparator()
+                        + "0. Show all items" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator()
+                        + "=== Show all items ===" + System.lineSeparator()
+                        + "Хранилище еще не содержит заявок" + System.lineSeparator()
+                        + "Menu:" + System.lineSeparator()
+                        + "0. Show all items" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator());
+    }
+
+    @Test
+    public void whenFindByNameAction() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[]{"0", "Андрей", "1"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {new FindItemsByNameAction(out), new ExitAction()};
+        new StartUI(out).init(in, tracker, actions);
+        assertEquals(out.toString(),
+                "Menu:" + System.lineSeparator()
+                        + "0. Find items by name" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator()
+                        + "=== Find items by name ====" + System.lineSeparator()
+                        + "Заявки с именем: Андрей не найдены." + System.lineSeparator()
+                        + "Menu:" + System.lineSeparator()
+                        + "0. Find items by name" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator());
+    }
+
+    @Test
+    public void whenFindByIdAction() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[]{"0", "1", "1"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {new FindItemByIdAction(out), new ExitAction()};
+        new StartUI(out).init(in, tracker, actions);
+        assertEquals(out.toString(),
+                "Menu:" + System.lineSeparator()
+                        + "0. Find item by id" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator()
+                        + "=== Find item by id ====" + System.lineSeparator()
+                        + "Заявка с введенным id: 1 не найдена." + System.lineSeparator()
+                        + "Menu:" + System.lineSeparator()
+                        + "0. Find item by id" + System.lineSeparator()
+                        + "1. Exit Program" + System.lineSeparator());
     }
 }
